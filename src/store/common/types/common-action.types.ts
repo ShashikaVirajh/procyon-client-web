@@ -1,0 +1,13 @@
+import { Action } from 'types/redux.types';
+
+export enum COMMON_ACTION_TYPES {
+  TOGGLE_SIDE_BAR = 'COMMON/TOGGLE_SIDE_BAR',
+  RESET_COMMON_STATE = 'COMMON/RESET_COMMON_STATE',
+  RESET_APPLICATION_STATE = 'COMMON/RESET_APPLICATION_STATE',
+}
+
+export type ToggleSideBarAction = Action<COMMON_ACTION_TYPES.TOGGLE_SIDE_BAR>;
+
+export type ResetCommonStateAction = Action<COMMON_ACTION_TYPES.RESET_COMMON_STATE>;
+
+export type ResetApplicationStateAction = Action<COMMON_ACTION_TYPES.RESET_APPLICATION_STATE>;
