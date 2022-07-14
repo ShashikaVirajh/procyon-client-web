@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node:16.15.1
+      - image: cimg/node:16.15.1
     working_directory: ~/project
     steps:
       - checkout
@@ -27,7 +27,7 @@ jobs:
 
   deploy-to-aws-s3:
     docker:
-      - image: circleci/node:16.15.1
+      - image: cimg/node:16.15.1
     working_directory: ~/project
     steps:
       - checkout
@@ -63,7 +63,7 @@ jobs:
 
   deploy-to-aws-cloudfront:
     docker:
-      - image: circleci/node:16.15.1
+      - image: cimg/node:16.15.1
     working_directory: ~/project
     steps:
       - checkout
