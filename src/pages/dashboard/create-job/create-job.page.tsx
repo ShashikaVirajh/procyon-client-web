@@ -40,7 +40,8 @@ const CreateJobPage: FC = (): JSX.Element => {
 
   useEffect(() => {
     reset(formData);
-  }, [detailedJob]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [detailedJob, reset]);
 
   const { isDirty } = useFormState({ control });
 

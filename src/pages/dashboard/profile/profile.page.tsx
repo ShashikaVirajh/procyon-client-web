@@ -40,7 +40,8 @@ const ProfilePage: FC = () => {
 
   useEffect(() => {
     reset(formData);
-  }, [currentUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser, formData]);
 
   const { isDirty } = useFormState({ control });
 

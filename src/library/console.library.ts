@@ -14,4 +14,6 @@ const warn = (key: string, message: any): void => {
   logger.warn(key, message);
 };
 
-export default { log, error, warn };
+const loggerFunctions = { log, error, warn };
+
+export default loggerFunctions;

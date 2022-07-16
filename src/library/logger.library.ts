@@ -23,4 +23,6 @@ const log = (name: string, message: string, extras?: any): void => {
   });
 };
 
-export default { init, log };
+const loggerFunctions = { init, log };
+
+export default loggerFunctions;

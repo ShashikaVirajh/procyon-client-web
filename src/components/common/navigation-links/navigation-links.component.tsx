@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { LINK_ITEMS, TLinkItem } from './link-list';
 import Link from './link.component';
 
-const NavigationLinks: FC<NavigationLinks> = ({ onClick }) => {
+const NavigationLinks: FC<Props> = ({ onClick }) => {
   return (
     <div className='nav-links'>
       {LINK_ITEMS.map((linkItem: TLinkItem) => {
@@ -13,7 +13,7 @@ const NavigationLinks: FC<NavigationLinks> = ({ onClick }) => {
   );
 };
 
-type NavigationLinks = {
+type Props = {
   onClick?: () => void;
 };
 

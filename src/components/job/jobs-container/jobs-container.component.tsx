@@ -21,7 +21,7 @@ const JobsContainer: FC = () => {
 
   useEffect(() => {
     dispatch(fetchJobListRequest());
-  }, [currentPage, search, jobStatus, jobType, sort]);
+  }, [currentPage, search, jobStatus, jobType, sort, dispatch]);
 
   if (isFetchingJobList) return <Spinner />;
 

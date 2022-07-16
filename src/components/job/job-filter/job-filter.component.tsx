@@ -1,5 +1,5 @@
 import { JOB_SORT_OPTION_LIST, JOB_STATUS_LIST, JOB_TYPE_LIST } from 'constants/common.constants';
-import { FC, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { Button, Select, TextInput } from 'components/elements';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -30,15 +30,15 @@ const JobFilter: FC = () => {
 
   const { isDirty } = useFormState({ control });
 
+  const handleResetFilters = useCallback((): void => {
+    dispatch(resetJobFilters());
+  }, [dispatch]);
+
   useEffect(() => {
     return () => {
       handleResetFilters();
     };
-  }, []);
-
-  const handleResetFilters = (): void => {
-    dispatch(resetJobFilters());
-  };
+  }, [handleResetFilters]);
 
   const handleOnSubmit = handleSubmit((data) => {
     const filterJobsPayload: FilterJobsPayload = {

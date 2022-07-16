@@ -13,7 +13,7 @@ const Stats: FC = () => {
 
   useEffect(() => {
     dispatch(fetchStatsRequest());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

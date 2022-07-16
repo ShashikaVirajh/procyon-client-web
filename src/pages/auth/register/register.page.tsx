@@ -43,7 +43,7 @@ const RegisterPage: FC = () => {
     if (isAuthenticated) {
       navigate(ROUTES.DASHBOARD);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
 
   const handleOnSubmit = handleSubmit((data) => {
     const { isMember } = values;
