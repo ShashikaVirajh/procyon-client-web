@@ -87,7 +87,7 @@ jobs:
             zip ../build-zip -r * .[^.]*
             echo "Build Successful"
       - run:
-          name: Deploy to AWS CloudFront
+          name: Deploy to AWS Cloudfront
           command: |
             aws configure set preview.cloudfront true
             if [ "${CIRCLE_BRANCH}" === "production" ]
