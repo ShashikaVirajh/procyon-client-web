@@ -21,7 +21,7 @@ aliases:
       name: Install Dependencies
       command: yarn
   - &save_cache
-    save_cache
+    save_cache:
       paths:
         - node_modules
       key: app-{{ checksum "package.json" }}
