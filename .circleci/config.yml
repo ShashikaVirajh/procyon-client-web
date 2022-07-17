@@ -16,6 +16,10 @@ aliases:
       keys:
         - app-{{ checksum "package.json" }}
         - app-
+  - &install-yarn
+    run:
+      name: Install yarn
+      command: npm install -g yarn
   - &install-dependencies
     run:
       name: Install Dependencies
@@ -42,63 +46,62 @@ aliases:
         cd build
         zip ../build-zip -r * .[^.]*
         echo "Build Successful"
+  - &deploy-to-aws-s3
+    run:
+      name: Deploy to AWS S3
+      command: |
+        if [ "${CIRCLE_BRANCH}" === "production" ]
+        then
+          aws --region ${AWS_REGION} s3 sync ~/project/build s3://${AWS_PRODUCTION_BUCKET} --delete
+        elif [ "${CIRCLE_BRANCH}" === "staging"  ]
+        then 
+          aws --region ${AWS_REGION} s3 sync ~/project/build s3://${AWS_STAGING_BUCKET} --delete
+        else
+          aws --region ${AWS_REGION} s3 sync ~/project/build s3://${AWS_DEVELOPMENT_BUCKET} --delete
+        fi
+  - &deploy-to-aws-cloudfront
+    run:
+      name: Deploy to AWS CloudFront
+      command: |
+        aws configure set preview.cloudfront true
+        if [ "${CIRCLE_BRANCH}" === "production" ]
+        then
+          aws cloudfront create-invalidation --distribution-id ${PRODUCTION_DISTRIBUTION_ID} --paths /\*
+        elif [ "${CIRCLE_BRANCH}" === "staging"  ]
+        then 
+          aws cloudfront create-invalidation --distribution-id ${STAGING_DISTRIBUTION_ID} --paths /\*
+        else
+          aws cloudfront create-invalidation --distribution-id ${DEVELOPMENT_DISTRIBUTION_ID} --paths /\*
+        fi
 
 jobs:
   build:
     executor: app-executor
-
     steps:
       - checkout
       - *display-current_branch-name
       - *restore-cache
-      - run:
-          name: Install yarn
-          command: npm install -g yarn
+      - *install-yarn
       - *install-dependencies
       - *save_cache
 
   deploy-to-aws-s3:
     executor: app-executor
-
     steps:
       - checkout
       - *display-current_branch-name
       - *install-aws-cli
       - *build-project
-      - run:
-          name: Deploy to AWS S3
-          command: |
-            if [ "${CIRCLE_BRANCH}" === "production" ]
-            then
-              aws --region ${AWS_REGION} s3 sync ~/project/build s3://${AWS_PRODUCTION_BUCKET} --delete
-            elif [ "${CIRCLE_BRANCH}" === "staging"  ]
-            then 
-              aws --region ${AWS_REGION} s3 sync ~/project/build s3://${AWS_STAGING_BUCKET} --delete
-            else
-              aws --region ${AWS_REGION} s3 sync ~/project/build s3://${AWS_DEVELOPMENT_BUCKET} --delete
-            fi
+      - *deploy-to-aws-s3
 
   deploy-to-aws-cloudfront:
     executor: app-executor
-
     steps:
       - checkout
       - *display-current_branch-name
       - *install-aws-cli
       - *build-project
-      - run:
-          name: Deploy to AWS CloudFront
-          command: |
-            aws configure set preview.cloudfront true
-            if [ "${CIRCLE_BRANCH}" === "production" ]
-            then
-              aws cloudfront create-invalidation --distribution-id ${PRODUCTION_DISTRIBUTION_ID} --paths /\*
-            elif [ "${CIRCLE_BRANCH}" === "staging"  ]
-            then 
-              aws cloudfront create-invalidation --distribution-id ${STAGING_DISTRIBUTION_ID} --paths /\*
-            else
-              aws cloudfront create-invalidation --distribution-id ${DEVELOPMENT_DISTRIBUTION_ID} --paths /\*
-            fi
+      - *deploy-to-aws-cloudfront
 
 workflows:
   build_and_deploy:
