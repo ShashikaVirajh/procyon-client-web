@@ -50,10 +50,10 @@ aliases:
     run:
       name: Deploy to AWS S3
       command: |
-        if [ "${CIRCLE_BRANCH}" === "production" ]
+        if [ "${CIRCLE_BRANCH}" == "production" ]
         then
           aws --region ${AWS_REGION} s3 sync ~/project/build s3://${AWS_PRODUCTION_BUCKET} --delete
-        elif [ "${CIRCLE_BRANCH}" === "staging"  ]
+        elif [ "${CIRCLE_BRANCH}" == "staging"  ]
         then 
           aws --region ${AWS_REGION} s3 sync ~/project/build s3://${AWS_STAGING_BUCKET} --delete
         else
@@ -64,10 +64,10 @@ aliases:
       name: Deploy to AWS CloudFront
       command: |
         aws configure set preview.cloudfront true
-        if [ "${CIRCLE_BRANCH}" === "production" ]
+        if [ "${CIRCLE_BRANCH}" == "production" ]
         then
           aws cloudfront create-invalidation --distribution-id ${PRODUCTION_DISTRIBUTION_ID} --paths /\*
-        elif [ "${CIRCLE_BRANCH}" === "staging"  ]
+        elif [ "${CIRCLE_BRANCH}" == "staging"  ]
         then 
           aws cloudfront create-invalidation --distribution-id ${STAGING_DISTRIBUTION_ID} --paths /\*
         else
