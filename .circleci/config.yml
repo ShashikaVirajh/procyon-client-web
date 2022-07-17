@@ -64,10 +64,10 @@ aliases:
       name: Deploy to AWS CloudFront
       command: |
         aws configure set preview.cloudfront true
-        if [ "${CIRCLE_BRANCH}" === "production" ]
+        if [ "${CIRCLE_BRANCH}" == "production" ]
         then
           aws cloudfront create-invalidation --distribution-id ${PRODUCTION_DISTRIBUTION_ID} --paths /\*
-        elif [ "${CIRCLE_BRANCH}" === "staging"  ]
+        elif [ "${CIRCLE_BRANCH}" == "staging"  ]
         then 
           aws cloudfront create-invalidation --distribution-id ${STAGING_DISTRIBUTION_ID} --paths /\*
         else
