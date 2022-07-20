@@ -7,7 +7,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "coverage": "react-scripts test -- --coverage",
-    "lint": "eslint -c .eslintrc.json --ext .ts --ext .tsx src --max-warnings=0",
     "prepare": "husky install"
   },
   "dependencies": {
