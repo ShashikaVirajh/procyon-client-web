@@ -18,7 +18,7 @@ import {
   withSentryReactRouterV6Routing,
 } from '@sentry/react';
 
-import { ENVIRONMENT, SENTRY_DSN, IS_DEV_APP, BASE_URL } from 'config';
+import { ENVIRONMENT, SENTRY_DSN, IS_DEV_APP } from 'config';
 
 const init = (): void => {
   if (!IS_DEV_APP) {
