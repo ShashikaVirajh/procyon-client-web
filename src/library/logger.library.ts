@@ -23,6 +23,23 @@ const log = (name: string, message: string, extras?: any): void => {
   });
 };
 
-const loggerFunctions = { init, log };
+const message = (msg: string): void => {
+  Sentry.captureMessage(msg);
+};
+
+const addBreadcrumb = ({ message, data, category }: Sentry.Breadcrumb): void => {
+  Sentry.addBreadcrumb({
+    data,
+    message,
+    category,
+    level: Sentry.Severity.Info,
+  });
+};
+
+const configureScope = (callback: (scope: Sentry.Scope) => void): void => {
+  Sentry.configureScope(callback);
+};
+
+const loggerFunctions = { addBreadcrumb, configureScope, init, log, message };
 
 export default loggerFunctions;

@@ -25,8 +25,7 @@ const App = (): JSX.Element => (
             <ProtectedRoute>
               <DashboardPage />
             </ProtectedRoute>
-          }
-        >
+          }>
           <Route index element={<StatsPage />} />
           <Route path={ROUTES.JOB_LIST} element={<JobListPage />} />
           <Route path={ROUTES.CREATE_JOB} element={<CreateJobPage />} />
