@@ -10,16 +10,16 @@ import ChartsContainer from 'components/charts/chart-container/chart-container.c
 const Stats: FC = () => {
   const dispatch = useDispatch();
 
-  const monthlyApplications = useSelector(selectMonthlyApplications);
-
   useEffect(() => {
     dispatch(fetchStatsRequest());
   }, [dispatch]);
 
+  const monthlyApplications = useSelector(selectMonthlyApplications);
+
   return (
     <>
       <StatsContainer />
-      <ChartsContainer data={monthlyApplications} />
+      <ChartsContainer data={monthlyApplications} />ß
     </>
   );
 };

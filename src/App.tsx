@@ -1,9 +1,10 @@
 import { ROUTES } from 'constants/routes.constants';
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import { ProtectedRoute } from 'components/hoc';
 import { Spinner } from 'components/common';
+import { SentryRoutes } from 'library/logger.library';
 
 const ErrorPage = lazy(() => import('pages/common/error/error.page'));
 const LandingPage = lazy(() => import('pages/common/landing/landing.page'));
@@ -18,7 +19,7 @@ const DashboardPage = lazy(() => import('pages/dashboard/dashboard-layout/dashbo
 const App = (): JSX.Element => (
   <Suspense fallback={<Spinner />}>
     <BrowserRouter>
-      <Routes>
+      <SentryRoutes>
         <Route
           path={ROUTES.DASHBOARD}
           element={
@@ -36,7 +37,7 @@ const App = (): JSX.Element => (
         <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
 
         <Route path={ROUTES.NOT_FOUND} element={<ErrorPage />} />
-      </Routes>
+      </SentryRoutes>
     </BrowserRouter>
   </Suspense>
 );

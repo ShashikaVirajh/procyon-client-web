@@ -5,9 +5,10 @@ import { API_VERSIONS, HTTP_METHODS, STATUS_CODES } from 'enums';
 
 import { BASE_URL, IS_DEV_APP } from 'config';
 import { store } from 'store/store';
+import { resetApplicationState } from 'store/common/common.actions';
 
 import Console from 'library/console.library';
-import { resetApplicationState } from 'store/common/common.actions';
+import Logger, { SentryScope } from './logger.library';
 
 export const request = async ({
   action,
@@ -33,6 +34,19 @@ export const request = async ({
     headers: axiosHeaders,
     timeout: API_TIME_OUT,
   };
+
+  Logger.configureScope((scope: SentryScope) => {
+    const currentUser = store.getState().user?.data?.currentUser;
+
+    scope.setTag('request', axiosConfig.url || '-');
+
+    if (currentUser) {
+      scope.setTag('user-type', 'Authentication User');
+      scope.setUser({ email: currentUser?.email, name: currentUser?.userName });
+    } else {
+      scope.setTag('user-type', 'Guest User');
+    }
+  });
 
   if (IS_DEV_APP) {
     const requestConfig = {
@@ -61,6 +75,8 @@ export const request = async ({
     if (error?.response?.status === STATUS_CODES.UNAUTHORIZED) {
       store.dispatch(resetApplicationState());
     }
+
+    Logger.log('API Error', error?.message || error?.response?.message, error);
 
     throw error;
   }
