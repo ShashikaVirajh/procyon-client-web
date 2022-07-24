@@ -2,8 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { PERSIST, persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 
-import { IS_PROD_APP } from 'config';
-
+import { IS_DEV_APP } from 'config';
 import { rootSaga } from './root-saga';
 import { rootReducer } from './root-reducer';
 
@@ -18,7 +17,7 @@ const setMiddleware = (getDefaultMiddleware: Function): any =>
 
 const store = configureStore({
   reducer: rootReducer,
-  devTools: !IS_PROD_APP,
+  devTools: IS_DEV_APP,
   middleware: setMiddleware,
 });
 

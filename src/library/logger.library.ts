@@ -11,6 +11,7 @@ import {
   Breadcrumb,
   captureException,
   captureMessage,
+  configureScope as configureSentryScope,
   init as initialize,
   reactRouterV6Instrumentation,
   Scope,
@@ -66,7 +67,7 @@ const addBreadcrumb = ({ message, data, category }: Breadcrumb): void => {
 };
 
 const configureScope = (callback: (scope: Scope) => void): void => {
-  configureScope(callback);
+  configureSentryScope(callback);
 };
 
 const loggerFunctions = { addBreadcrumb, configureScope, init, log, message };
