@@ -168,6 +168,15 @@ workflows:
                 - development
                 - staging
                 - production
+      - publish-to-docker-hub:
+          requires:
+            - unit-tests
+          filters:
+            branches:
+              only:
+                - development
+                - staging
+                - production
       - deploy-to-aws-s3:
           requires:
             - unit-tests
