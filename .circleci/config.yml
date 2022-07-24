@@ -5,11 +5,12 @@ executors:
     docker:
       - image: cimg/node:16.15.1
     working_directory: ~/project
+
   docker-executor:
     environment:
       IMAGE_NAME: shashikalearning/procyon
     docker:
-      - image: cimg/buildpack-deps:stretch
+      - image: circleci/buildpack-deps:stretch
 
 aliases:
   - &display-current_branch-name
@@ -27,6 +28,7 @@ aliases:
     run:
       name: Install yarn
       command: npm install -g yarn
+
   - &install-dependencies
     run:
       name: Install Dependencies
@@ -69,7 +71,7 @@ aliases:
 
   - &docker-login
     run:
-      name: Log In To Docker
+      name: Login To Docker
       command: docker login -u "${DOCKER_HUB_USER}" -p "${DOCKER_HUB_PASSWORD}"
 
   - &docker-build
@@ -171,6 +173,7 @@ workflows:
   build_and_deploy:
     jobs:
       - build
+
       - unit-tests:
           requires:
             - build
@@ -180,6 +183,7 @@ workflows:
                 - development
                 - staging
                 - production
+
       - publish-to-docker-hub:
           requires:
             - unit-tests
@@ -189,6 +193,7 @@ workflows:
                 - development
                 - staging
                 - production
+
       - deploy-to-aws-s3:
           requires:
             - publish-to-docker-hub
@@ -198,6 +203,7 @@ workflows:
                 - development
                 - staging
                 - production
+
       - deploy-to-aws-cloudfront:
           requires:
             - deploy-to-aws-s3
