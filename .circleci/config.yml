@@ -135,12 +135,12 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "production" ]
             then
-              docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM}
+              docker tag shashikalearning/procyon:v1 ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM}
             elif [ "${CIRCLE_BRANCH}" == "staging"  ]
             then 
-              docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:staging-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM}
+              docker tag shashikalearning/procyon:v1 ${IMAGE_NAME}:staging-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM}
             else
-              docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:development-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:development-${CIRCLE_BUILD_NUM}
+              docker tag shashikalearning/procyon:v1 ${IMAGE_NAME}:development-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:development-${CIRCLE_BUILD_NUM}
             fi
 
   deploy-to-aws-s3:
