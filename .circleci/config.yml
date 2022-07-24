@@ -67,6 +67,11 @@ aliases:
       name: Run Unit Tests
       command: yarn test
 
+  - &setup_remote_docker
+    setup_remote_docker:
+      version: 20.10.14
+      docker_layer_caching: true
+      
   - &docker-login
     run:
       name: Log In To Docker
