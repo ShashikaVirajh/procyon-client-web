@@ -179,7 +179,7 @@ workflows:
                 - production
       - deploy-to-aws-s3:
           requires:
-            - unit-tests
+            - publish-to-docker-hub
           filters:
             branches:
               only:
