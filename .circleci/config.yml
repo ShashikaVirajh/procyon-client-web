@@ -23,11 +23,6 @@ aliases:
         - app-{{ checksum "package.json" }}
         - app-
 
-  - &setup_remote_docker
-      setup_remote_docker:
-        version: 20.10.14
-        docker_layer_caching: true
-
   - &install-yarn
     run:
       name: Install yarn
@@ -67,11 +62,12 @@ aliases:
       name: Run Unit Tests
       command: yarn test
 
-  - &setup_remote_docker
-    setup_remote_docker:
-      version: 20.10.14
-      docker_layer_caching: true
-      
+   - &setup_remote_docker
+      setup_remote_docker:
+        version: 20.10.14
+        docker_layer_caching: true
+
+
   - &docker-login
     run:
       name: Log In To Docker
@@ -148,7 +144,7 @@ jobs:
     executor: docker-executor
     steps:
       - checkout
-      - *set-remote-docker
+      - *setup_remote_docker
       - *restore-cache
       - *docker-login
       - *docker-build
