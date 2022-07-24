@@ -23,6 +23,11 @@ aliases:
         - app-{{ checksum "package.json" }}
         - app-
 
+  - &setup_remote_docker
+      setup_remote_docker:
+        version: 20.10.14
+        docker_layer_caching: true
+
   - &install-yarn
     run:
       name: Install yarn
@@ -70,7 +75,21 @@ aliases:
   - &docker-build
     run:
       name: Build Docker Image
-      command: docker build -t shashikalearning/procyon:v1 .
+      command: docker build -t ${IMAGE_NAME}:latest .
+
+  - &docker-push
+    run:
+      name: Tag and push to docker hub
+      command: |
+        if [ "${CIRCLE_BRANCH}" == "production" ]
+        then
+          docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM}
+        elif [ "${CIRCLE_BRANCH}" == "staging"  ]
+        then 
+          docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:staging-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM}
+        else
+          docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:development-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:development-${CIRCLE_BUILD_NUM}
+        fi
 
   - &deploy-to-aws-s3
     run:
@@ -124,24 +143,11 @@ jobs:
     executor: docker-executor
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.14
-          docker_layer_caching: true
+      - *set-remote-docker
       - *restore-cache
       - *docker-login
       - *docker-build
-      - run:
-          name: Tag and push to docker hub
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "production" ]
-            then
-              docker tag shashikalearning/procyon:v1 ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM}
-            elif [ "${CIRCLE_BRANCH}" == "staging"  ]
-            then 
-              docker tag shashikalearning/procyon:v1 ${IMAGE_NAME}:staging-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM}
-            else
-              docker tag shashikalearning/procyon:v1 ${IMAGE_NAME}:development-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:development-${CIRCLE_BUILD_NUM}
-            fi
+      - *docker-push
 
   deploy-to-aws-s3:
     executor: app-executor
