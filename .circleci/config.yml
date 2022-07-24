@@ -5,17 +5,24 @@ executors:
     docker:
       - image: cimg/node:16.15.1
     working_directory: ~/project
+  docker-executor:
+    environment:
+      IMAGE_NAME: shashikalearning/procyon
+    docker:
+      - image: circleci/buildpack-deps:stretch
 
 aliases:
   - &display-current_branch-name
     run:
       name: Display current branch name
       command: echo ${CIRCLE_BRANCH}
+
   - &restore-cache
     restore_cache:
       keys:
         - app-{{ checksum "package.json" }}
         - app-
+
   - &install-yarn
     run:
       name: Install yarn
@@ -24,11 +31,13 @@ aliases:
     run:
       name: Install Dependencies
       command: yarn
+
   - &save_cache
     save_cache:
       paths:
         - node_modules
       key: app-{{ checksum "package.json" }}
+
   - &install-aws-cli
     run:
       name: Install AWS CLI
@@ -37,6 +46,7 @@ aliases:
         sudo apt-get -y -qq update
         sudo apt-get install -y awscli
         sudo apt-get install -y python3-pip python-dev-is-python2 build-essential
+
   - &build-project
     run:
       name: Build project
@@ -46,10 +56,18 @@ aliases:
         cd build
         zip ../build-zip -r * .[^.]*
         echo "Build Successful"
+
   - &unit-tests
     run:
       name: Run Unit Tests
       command: yarn test
+
+  - &docker-login
+    run: docker login -u "${DOCKER_HUB_USER}" -p "${DOCKER_HUB_PASSWORD}"
+
+  - &docker-build
+    run: docker build -t ${IMAGE_NAME}:latest .
+
   - &deploy-to-aws-s3
     run:
       name: Deploy to AWS S3
@@ -63,6 +81,7 @@ aliases:
         else
           aws --region ${AWS_REGION} s3 sync ~/project/build s3://${AWS_DEVELOPMENT_BUCKET} --delete
         fi
+
   - &deploy-to-aws-cloudfront
     run:
       name: Deploy to AWS CloudFront
@@ -97,6 +116,27 @@ jobs:
       - *restore-cache
       - *unit-tests
 
+  publish-to-docker-hub:
+    executor: docker-executor
+    steps:
+      - checkout
+      - setup_remote_docker
+      - *restore-cache
+      - *docker-login
+      - *docker-build
+      - run:
+          name: Tag and push to docker hub
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "production" ]
+            then
+              docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM}
+            elif [ "${CIRCLE_BRANCH}" == "staging"  ]
+            then 
+              docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:staging-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:production-${CIRCLE_BUILD_NUM}
+            else
+              docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:development-${CIRCLE_BUILD_NUM} && docker push ${IMAGE_NAME}:development-${CIRCLE_BUILD_NUM}
+            fi
+
   deploy-to-aws-s3:
     executor: app-executor
     steps:
@@ -122,6 +162,15 @@ workflows:
       - unit-tests:
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - development
+                - staging
+                - production
+      - publish-to-docker-hub:
+          requires:
+            - unit-tests
           filters:
             branches:
               only:
