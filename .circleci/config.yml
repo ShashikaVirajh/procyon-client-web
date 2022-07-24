@@ -10,7 +10,7 @@ executors:
     environment:
       IMAGE_NAME: shashikalearning/procyon
     docker:
-      - image: circleci/buildpack-deps:stretch
+      - image: cimg/base:2022.07
 
 aliases:
   - &display-current_branch-name
