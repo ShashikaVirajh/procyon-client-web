@@ -63,10 +63,14 @@ aliases:
       command: yarn test
 
   - &docker-login
-    run: docker login -u "${DOCKER_HUB_USER}" -p "${DOCKER_HUB_PASSWORD}"
+    run:
+      name: Log In To Docker
+      command: docker login -u "${DOCKER_HUB_USER}" -p "${DOCKER_HUB_PASSWORD}"
 
   - &docker-build
-    run: docker build -t shashikalearning/procyon:v1 .
+    run:
+      name: Build Docker Image
+      command: docker build -t shashikalearning/procyon:v1 .
 
   - &deploy-to-aws-s3
     run:
