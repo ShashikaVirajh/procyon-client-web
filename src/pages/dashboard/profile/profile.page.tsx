@@ -2,15 +2,14 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, useFormState } from 'react-hook-form';
 
-import { Button, Header, TextInput } from 'components/elements';
+import { Button, Header, TextInput } from 'components/layouts';
 import { UpdateProfileForm } from 'types/form.types';
 
 import { RootState } from 'store/store';
 import { updateProfileRequest } from 'store/user/user.actions';
 import { selectCurrentUser } from 'store/user/user.selector';
 
-import { UpdateProfileRequestPayload } from 'store/user/types/user-payload.types';
-
+import { UpdateProfileRequestPayload } from 'types/payload.types';
 import { emailRules, lastNameRules, locationRules, userNameRules } from 'validation';
 
 import Wrapper from './profile.styles';

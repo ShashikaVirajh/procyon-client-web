@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 
-import { StatsState } from 'store/stats/types/stats-state.types';
+import { StatsState } from './stats-store.types';
 
 import {
   fetchStatsFailed,

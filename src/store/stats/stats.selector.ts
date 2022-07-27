@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 import { RootState } from 'store/store';
-import { StatsState } from './types/stats-state.types';
+import { StatsState } from './stats-store.types';
 
 const selectStatsState = (state: RootState): StatsState => state.stats;
 

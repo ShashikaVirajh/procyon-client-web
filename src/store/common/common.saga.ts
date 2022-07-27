@@ -5,8 +5,7 @@ import { resetStatsState } from 'store/stats/stats.actions';
 import { signOutRequest } from 'store/user/user.actions';
 import { resetCommonState } from './common.actions';
 
-import { COMMON_ACTION_TYPES } from './types/common-action.types';
-import { CommonSagas, ResetApplicationStateSaga } from './types/common-saga.types';
+import { COMMON_ACTION_TYPES, CommonSagas, ResetApplicationStateSaga } from './common-store.types';
 
 function* resetApplicationStateSaga(): ResetApplicationStateSaga {
   yield* put(resetCommonState());

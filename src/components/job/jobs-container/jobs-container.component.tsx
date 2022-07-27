@@ -1,11 +1,10 @@
 import { FC, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Header } from 'components/elements';
 import { fetchJobListRequest } from 'store/job/job.actions';
-import { Pagination, Spinner } from 'components/common';
+import { Header, Pagination, Spinner } from 'components/layouts';
 import { RootState } from 'store/store';
-import { DetailedJob } from 'store/job/types/job-state.types';
+import { DetailedJob } from 'store/job/job-store.types';
 import { SingleJob } from 'components/job';
 import { selectJobFilters, selectJobList, selectPagination } from 'store/job/job.selector';
 

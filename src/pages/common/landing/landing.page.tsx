@@ -1,11 +1,8 @@
 import { FC } from 'react';
 
-// import { CustomImage, Header, Paragraph, RouterLink } from 'components/elements';
-import { CustomImage, Header, Paragraph } from 'components/elements';
-
+import { AppLogo, CustomImage, Header, Paragraph } from 'components/layouts';
 import MainImg from 'assets/images/main.svg';
 
-import { AppLogo } from 'components/common';
 import Wrapper from './landing.styles';
 
 const LandingPage: FC = () => {

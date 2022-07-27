@@ -1,5 +1,5 @@
 import { CustomError } from 'types/error.types';
-import { FetchStatsSuccessPayload } from 'store/stats/types/stats-payload.types';
+import { FetchStatsSuccessPayload } from 'types/payload.types';
 import { createAction, withMatcher } from 'utils/redux.utils';
 import {
   FetchStatsFailedAction,
@@ -7,7 +7,7 @@ import {
   FetchStatsSuccessAction,
   ResetStatsStateAction,
   STAT_ACTION_TYPES,
-} from './types/stats-action.types';
+} from './stats-store.types';
 
 export const fetchStatsRequest = withMatcher(
   (): FetchStatsRequestAction => createAction(STAT_ACTION_TYPES.FETCH_STATS_REQUEST),

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import { BigSideBar, NavBar, SmallSideBar } from 'components/common';
+import { BigSideBar, NavBar, SmallSideBar } from 'components/layouts';
 
 import Wrapper from './dashboard-layout.styles';
 

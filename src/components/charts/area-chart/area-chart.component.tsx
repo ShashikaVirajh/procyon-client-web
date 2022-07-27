@@ -9,7 +9,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { MonthlyApplication } from 'store/stats/types/stats-state.types';
+import { MonthlyApplication } from 'store/stats/stats-store.types';
 
 const AreaChartComponent: FC<AreaChartComponentProps> = ({ data, height, color }) => {
   return (

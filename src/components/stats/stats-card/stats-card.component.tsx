@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Header } from 'components/elements';
+import { Header } from 'components/layouts';
 
 import Wrapper from './stats-card.styles';
 

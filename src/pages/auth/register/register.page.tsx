@@ -5,16 +5,14 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, ButtonLink, Header, Text } from 'components/elements';
 import { selectIsAuthenticated } from 'store/user/user.selector';
-import { SignInRequestPayload, SignUpRequestPayload } from 'store/user/types/user-payload.types';
+import { SignInRequestPayload, SignUpRequestPayload } from 'types/payload.types';
 
 import { signInRequest, signUpRequest } from 'store/user/user.actions';
 import { RootState } from 'store/store';
 
-import { TextInput } from 'components/elements/';
 import { RegistrationForm } from 'types/form.types';
-import { AppLogo } from 'components/common';
+import { AppLogo, Button, ButtonLink, Header, Text, TextInput } from 'components/layouts';
 import { emailRules, passwordRules, userNameRules } from 'validation';
 
 import Wrapper from './register.styles';

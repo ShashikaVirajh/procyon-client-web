@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 import { RootState } from 'store/store';
-import { JobState } from './types/job-state.types';
+import { JobState } from './job-store.types';
 
 const selectJobState = (state: RootState): JobState => state.job;
 

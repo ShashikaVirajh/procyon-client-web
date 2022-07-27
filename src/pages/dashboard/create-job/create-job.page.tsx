@@ -3,13 +3,13 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, useFormState } from 'react-hook-form';
 
-import { Button, Header, Select, TextInput } from 'components/elements';
+import { Button, Header, Select, TextInput } from 'components/layouts';
 
 import { RootState } from 'store/store';
 
 import { JobForm } from 'types/form.types';
 import { createJobRequest } from 'store/job/job.actions';
-import { CreateJobRequestPayload } from 'store/job/types/job-payload.types';
+import { CreateJobRequestPayload } from 'types/payload.types';
 import { selectDetailedJob } from 'store/job/job.selector';
 import { companyRules, locationRules, positionRules } from 'validation/';
 import { JOB_STATUSES, JOB_TYPES } from 'enums';

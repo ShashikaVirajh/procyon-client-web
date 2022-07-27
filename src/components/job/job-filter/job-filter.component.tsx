@@ -1,12 +1,12 @@
 import { JOB_SORT_OPTION_LIST, JOB_STATUS_LIST, JOB_TYPE_LIST } from 'constants/common.constants';
 import { FC, useCallback, useEffect } from 'react';
-import { Button, Select, TextInput } from 'components/elements';
+import { Button, Select, TextInput } from 'components/layouts';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { JobFilterForm } from 'types/form.types';
 
 import { useForm, useFormState } from 'react-hook-form';
-import { FilterJobsPayload } from 'store/job/types/job-payload.types';
+import { FilterJobsPayload } from 'types/payload.types';
 import { filterJobs, resetJobFilters } from 'store/job/job.actions';
 import { selectJobFilters } from 'store/job/job.selector';
 
