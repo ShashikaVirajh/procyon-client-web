@@ -1,4 +1,5 @@
 import { API_TIME_OUT } from 'constants/common.constants';
+import { BASE_URL, IS_DEV_APP } from 'constants/config.constants';
 import axios, { AxiosRequestConfig } from 'axios';
 
 import { API_VERSIONS, HTTP_METHODS, STATUS_CODES } from 'enums';
@@ -7,7 +8,6 @@ import { store } from 'store/store';
 import { resetApplicationState } from 'store/common/common.actions';
 
 import Console from 'library/console.library';
-import { BASE_URL, IS_DEV_APP } from 'config';
 import Logger, { SentryScope } from './logger.library';
 
 export const request = async ({

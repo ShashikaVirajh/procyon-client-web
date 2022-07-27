@@ -5,7 +5,7 @@ import { changeJobPage } from 'store/job/job.actions';
 // import { ChevronDoubleLeft, ChevronDoubleRight } from 'assets/icons';
 
 import { selectPagination } from 'store/job/job.selector';
-import { Button } from 'components/elements';
+import { Button } from 'components/layouts';
 import { ChangeJobPagePayload } from 'store/job/types/job-payload.types';
 
 import Wrapper from './pagination.styles';

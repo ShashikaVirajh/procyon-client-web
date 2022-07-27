@@ -1,8 +1,8 @@
+import { IS_DEV_APP } from 'constants/config.constants';
 import { configureStore } from '@reduxjs/toolkit';
 import { PERSIST, persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 
-import { IS_DEV_APP } from 'config';
 import { rootSaga } from './root-saga';
 import { rootReducer } from './root-reducer';
 

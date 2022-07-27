@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { TLinkItem } from './link-list';
+import { LinkItem } from './link-list';
 
 const Link: FC<LinkProps> = ({ linkItem, onClick }) => {
   const { id, text, path, icon } = linkItem;
@@ -24,7 +24,7 @@ const Link: FC<LinkProps> = ({ linkItem, onClick }) => {
 };
 
 type LinkProps = {
-  linkItem: TLinkItem;
+  linkItem: LinkItem;
   onClick?: () => void;
 };
 

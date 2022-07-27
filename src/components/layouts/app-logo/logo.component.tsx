@@ -1,4 +1,4 @@
-import { CustomImage } from 'components/elements';
+import { CustomImage } from 'components/layouts';
 import AppLogoImg from 'assets/images/app-logo.svg';
 
 const AppLogo = (): JSX.Element => {

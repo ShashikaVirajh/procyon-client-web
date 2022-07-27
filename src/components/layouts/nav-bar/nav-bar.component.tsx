@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Icon } from 'components/elements';
+import { Icon } from 'components/layouts';
 import { AlignLeft, CaretDown, UserCircle } from 'assets/icons';
 import { selectCurrentUser } from 'store/user/user.selector';
 import { resetApplicationState, toggleSideBar } from 'store/common/common.actions';

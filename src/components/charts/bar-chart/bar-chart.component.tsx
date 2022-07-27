@@ -1,28 +1,30 @@
 import { COLORS } from 'constants/colors.constants';
 import { FC } from 'react';
 
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import {
+  Bar,
+  BarChart as BarChartComponent,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
 import { MonthlyApplication } from 'store/stats/types/stats-state.types';
 
-const BarChartComponent: FC<BarChartComponentProps> = ({
-  data,
-  barSize,
-  height,
-  color,
-  allowDecimals,
-}) => (
+const BarChart: FC<BarChartProps> = ({ data, barSize, height, color, allowDecimals }) => (
   <ResponsiveContainer width='100%' height={height}>
-    <BarChart data={data}>
+    <BarChartComponent data={data}>
       <CartesianGrid strokeDasharray='10 10 ' />
       <XAxis dataKey='month' />
       <YAxis allowDecimals={allowDecimals} />
       <Tooltip />
       <Bar dataKey='count' fill={color} barSize={barSize} />
-    </BarChart>
+    </BarChartComponent>
   </ResponsiveContainer>
 );
 
-type BarChartComponentProps = {
+type BarChartProps = {
   data: MonthlyApplication[];
   color?: string;
   height?: number;
@@ -30,11 +32,11 @@ type BarChartComponentProps = {
   allowDecimals?: boolean;
 };
 
-BarChartComponent.defaultProps = {
+BarChart.defaultProps = {
   color: COLORS.DARK_BLUE,
   height: 300,
   barSize: 75,
   allowDecimals: false,
 };
 
-export default BarChartComponent;
+export default BarChart;

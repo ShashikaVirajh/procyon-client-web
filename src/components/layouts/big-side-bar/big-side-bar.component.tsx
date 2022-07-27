@@ -1,9 +1,8 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
-import { AppLogo } from 'components/common';
 import { selectIsSideBarOpen } from 'store/common/common.selector';
-import { NavigationLinks } from 'components/common';
+import { AppLogo, NavigationLinks } from 'components/layouts';
 
 import Wrapper from './big-side-bar.styles';
 

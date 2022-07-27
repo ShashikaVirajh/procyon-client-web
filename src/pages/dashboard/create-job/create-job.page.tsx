@@ -3,7 +3,7 @@ import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, useFormState } from 'react-hook-form';
 
-import { Button, Header, Select, TextInput } from 'components/elements';
+import { Button, Header, Select, TextInput } from 'components/layouts';
 
 import { RootState } from 'store/store';
 

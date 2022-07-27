@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
-// import { CustomImage, Header, Paragraph, RouterLink } from 'components/elements';
-import { CustomImage, Header, Paragraph } from 'components/elements';
+import { CustomImage, Header, Paragraph } from 'components/layouts';
 
 import NotFoundImg from 'assets/images/not-found.svg';
 

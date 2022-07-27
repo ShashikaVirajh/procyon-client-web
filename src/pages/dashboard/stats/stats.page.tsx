@@ -5,7 +5,7 @@ import { fetchStatsRequest } from 'store/stats/stats.actions';
 import { StatsContainer } from 'components/stats';
 import { selectMonthlyApplications } from 'store/stats/stats.selector';
 
-import ChartsContainer from 'components/charts/chart-container/chart-container.component';
+import MonthlyStatsChart from 'components/stats/monthly-stats-chart/monthly-stats-chart.component';
 
 const Stats: FC = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const Stats: FC = () => {
   return (
     <>
       <StatsContainer />
-      <ChartsContainer data={monthlyApplications} />ß
+      <MonthlyStatsChart data={monthlyApplications} />
     </>
   );
 };

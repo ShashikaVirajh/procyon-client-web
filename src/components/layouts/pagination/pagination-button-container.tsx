@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Button } from 'components/elements';
+import { Button } from 'components/layouts';
 import { createArrayFromNumber } from 'utils/numbers.utils';
 
 const PaginationButtonContainer: FC<PaginationButtonContainerProps> = ({

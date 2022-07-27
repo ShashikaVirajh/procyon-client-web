@@ -6,7 +6,7 @@ const Header: FC<HeaderProps> = ({ level = 1, className, text }) => {
   return <Tag className={className}>{text}</Tag>;
 };
 
-type HeaderTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+export type HeaderTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 type HeaderProps = {
   text: string;
