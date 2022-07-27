@@ -4,9 +4,8 @@ import { setErrorMessage } from 'utils/error.utils';
 import { normalizeFetchStatsResponse } from 'normalizers/stats.normalizer';
 
 import { StatsService } from './stats.service';
-import { STAT_ACTION_TYPES } from './types/stats-action.types';
+import { FetchStatsSaga, STAT_ACTION_TYPES, StatsSagas } from './stats-store.types';
 import { fetchStatsFailed, fetchStatsSuccess } from './stats.actions';
-import { FetchStatsSaga, StatsSagas } from './types/stats-saga.types';
 
 function* fetchStatsSaga(): FetchStatsSaga {
   try {

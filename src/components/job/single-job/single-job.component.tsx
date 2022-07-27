@@ -5,7 +5,7 @@ import { Briefcase, Calender, LocationArrow } from 'assets/icons';
 import { Button, Header, Text } from 'components/layouts';
 import { JobInfo } from 'components/job';
 import { formatDate } from 'utils/date.utils';
-import { DeleteJobRequestPayload } from 'store/job/types/job-payload.types';
+import { DeleteJobRequestPayload } from 'types/payload.types';
 import { deleteJobRequest } from 'store/job/job.actions';
 
 import Wrapper from './single.job.styles';

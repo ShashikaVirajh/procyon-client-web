@@ -2,13 +2,9 @@ import {
   SignInSuccessPayload,
   SignUpSuccessPayload,
   UpdateProfileSuccessPayload,
-} from 'store/user/types/user-payload.types';
+} from 'types/payload.types';
 
-import {
-  SignInResponse,
-  SignUpResponse,
-  UpdateProfileResponse,
-} from 'store/user/types/user-response.types';
+import { SignInResponse, SignUpResponse, UpdateProfileResponse } from 'types/response.types';
 
 export const normalizeSignInResponse = (data: SignInResponse): SignInSuccessPayload => {
   return {

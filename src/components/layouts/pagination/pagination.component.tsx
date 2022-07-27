@@ -6,7 +6,7 @@ import { changeJobPage } from 'store/job/job.actions';
 
 import { selectPagination } from 'store/job/job.selector';
 import { Button } from 'components/layouts';
-import { ChangeJobPagePayload } from 'store/job/types/job-payload.types';
+import { ChangeJobPagePayload } from 'types/payload.types';
 
 import Wrapper from './pagination.styles';
 import PaginatinButtonContainer from './pagination-button-container';

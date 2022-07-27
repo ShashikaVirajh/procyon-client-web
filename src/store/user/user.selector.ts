@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 import { RootState } from 'store/store';
-import { UserState } from './types/user-state.types';
+import { UserState } from './user-store.types';
 
 const selectUserState = (state: RootState): UserState => state.user;
 

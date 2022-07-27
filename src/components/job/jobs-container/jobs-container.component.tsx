@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchJobListRequest } from 'store/job/job.actions';
 import { Header, Pagination, Spinner } from 'components/layouts';
 import { RootState } from 'store/store';
-import { DetailedJob } from 'store/job/types/job-state.types';
+import { DetailedJob } from 'store/job/job-store.types';
 import { SingleJob } from 'components/job';
 import { selectJobFilters, selectJobList, selectPagination } from 'store/job/job.selector';
 

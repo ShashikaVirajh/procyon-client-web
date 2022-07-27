@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { JobFilterForm } from 'types/form.types';
 
 import { useForm, useFormState } from 'react-hook-form';
-import { FilterJobsPayload } from 'store/job/types/job-payload.types';
+import { FilterJobsPayload } from 'types/payload.types';
 import { filterJobs, resetJobFilters } from 'store/job/job.actions';
 import { selectJobFilters } from 'store/job/job.selector';
 

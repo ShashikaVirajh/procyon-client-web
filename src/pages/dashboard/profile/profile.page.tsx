@@ -9,8 +9,7 @@ import { RootState } from 'store/store';
 import { updateProfileRequest } from 'store/user/user.actions';
 import { selectCurrentUser } from 'store/user/user.selector';
 
-import { UpdateProfileRequestPayload } from 'store/user/types/user-payload.types';
-
+import { UpdateProfileRequestPayload } from 'types/payload.types';
 import { emailRules, lastNameRules, locationRules, userNameRules } from 'validation';
 
 import Wrapper from './profile.styles';

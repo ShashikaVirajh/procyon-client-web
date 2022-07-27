@@ -1,7 +1,7 @@
 import { request } from 'library/http.library';
 
 import { API_VERSIONS, HTTP_METHODS } from 'enums';
-import { FetchStatsResponse } from 'store/stats/types/stats-response.types';
+import { FetchStatsResponse } from 'types/response.types';
 
 import { STAT_ENDPOINTS } from './stats.endpoints';
 

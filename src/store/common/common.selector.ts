@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 import { RootState } from 'store/store';
-import { CommonState } from './types/common-state.types';
+import { CommonState } from './common-store.types';
 
 const selectCommonState = (state: RootState): CommonState => state.common;
 

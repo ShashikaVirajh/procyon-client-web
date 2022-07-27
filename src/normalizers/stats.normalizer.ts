@@ -1,6 +1,6 @@
-import { FetchStatsSuccessPayload } from 'store/stats/types/stats-payload.types';
-import { FetchStatsResponse } from 'store/stats/types/stats-response.types';
-import { MonthlyApplication } from 'store/stats/types/stats-state.types';
+import { FetchStatsSuccessPayload } from 'types/payload.types';
+import { FetchStatsResponse } from 'types/response.types';
+import { MonthlyApplication } from 'store/stats/stats-store.types';
 
 export const normalizeFetchStatsResponse = (data: FetchStatsResponse): FetchStatsSuccessPayload => {
   const applications = data?.monthlyApplications.map((application): MonthlyApplication => {

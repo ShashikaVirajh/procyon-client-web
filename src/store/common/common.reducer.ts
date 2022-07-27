@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 
-import { CommonState } from './types/common-state.types';
+import { CommonState } from './common-store.types';
 
 import { resetCommonState, toggleSideBar } from './common.actions';
 

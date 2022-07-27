@@ -9,14 +9,19 @@ import {
 import { setErrorMessage } from 'utils/error.utils';
 import { store } from 'store/store';
 import { createFetchJobListURL } from 'utils/job.utils';
-import { CreateJobSaga, DeleteJobSaga, FetchJobListSaga, JobSagas } from './types/job-saga.types';
 
-import { JobService } from './job.service';
 import {
   CreateJobRequestAction,
+  CreateJobSaga,
   DeleteJobRequestAction,
+  DeleteJobSaga,
+  FetchJobListSaga,
   JOB_ACTION_TYPES,
-} from './types/job-action.types';
+  JobSagas,
+} from './job-store.types';
+
+import { JobService } from './job.service';
+
 import {
   createJobFailed,
   createJobSuccess,

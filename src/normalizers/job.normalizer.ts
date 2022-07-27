@@ -1,15 +1,11 @@
-import { DetailedJob } from 'store/job/types/job-state.types';
+import { DetailedJob } from 'store/job/job-store.types';
 import {
   CreateJobSuccessPayload,
   DeleteJobSuccessPayload,
   FetchJobListSuccessPayload,
-} from 'store/job/types/job-payload.types';
+} from 'types/payload.types';
 
-import {
-  CreateJobResponse,
-  DeleteJobResponse,
-  FetchJobListResponse,
-} from 'store/job/types/job-response.types';
+import { CreateJobResponse, DeleteJobResponse, FetchJobListResponse } from 'types/response.types';
 
 export const normalizeCreateJobResponse = (data: CreateJobResponse): CreateJobSuccessPayload => {
   return {

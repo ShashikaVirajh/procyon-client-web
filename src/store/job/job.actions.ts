@@ -8,7 +8,8 @@ import {
   DeleteJobSuccessPayload,
   FetchJobListSuccessPayload,
   FilterJobsPayload,
-} from './types/job-payload.types';
+} from 'types/payload.types';
+
 import {
   ChangeJobPageAction,
   CreateJobFailedAction,
@@ -24,7 +25,7 @@ import {
   JOB_ACTION_TYPES,
   ResetJobFiltersAction,
   ResetJobStateAction,
-} from './types/job-action.types';
+} from './job-store.types';
 
 export const createJobRequest = withMatcher(
   (payload: CreateJobRequestPayload): CreateJobRequestAction =>

@@ -10,7 +10,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { MonthlyApplication } from 'store/stats/types/stats-state.types';
+import { MonthlyApplication } from 'store/stats/stats-store.types';
 
 const BarChart: FC<BarChartProps> = ({ data, barSize, height, color, allowDecimals }) => (
   <ResponsiveContainer width='100%' height={height}>

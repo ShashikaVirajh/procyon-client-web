@@ -9,9 +9,14 @@ import { isUnauthorizedUser, setErrorMessage } from 'utils/error.utils';
 
 import {
   SignInRequestAction,
+  SignInSaga,
   SignUpRequestAction,
+  SignUpSaga,
   UpdateProfileRequestAction,
-} from './types/user-action.types';
+  UpdateProfileSaga,
+  USER_ACTION_TYPES,
+  UserSagas,
+} from './user-store.types';
 import {
   signInFailed,
   signInSuccess,
@@ -23,8 +28,6 @@ import {
 } from './user.actions';
 
 import { UserService } from './user.service';
-import { USER_ACTION_TYPES } from './types/user-action.types';
-import { SignInSaga, SignUpSaga, UpdateProfileSaga, UserSagas } from './types/user-saga.types';
 
 function* signInSaga({ payload }: SignInRequestAction): SignInSaga {
   try {

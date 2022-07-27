@@ -1,6 +1,14 @@
 import { CustomError } from 'types/error.types';
 import { createAction, withMatcher } from 'utils/redux.utils';
 import {
+  SignInRequestPayload,
+  SignInSuccessPayload,
+  SignUpRequestPayload,
+  SignUpSuccessPayload,
+  UpdateProfileRequestPayload,
+  UpdateProfileSuccessPayload,
+} from 'types/payload.types';
+import {
   SignInFailedAction,
   SignInRequestAction,
   SignInSuccessAction,
@@ -11,16 +19,8 @@ import {
   UpdateProfileFailedAction,
   UpdateProfileRequestAction,
   UpdateProfileSuccessAction,
-} from './types/user-action.types';
-import {
-  SignInRequestPayload,
-  SignInSuccessPayload,
-  SignUpRequestPayload,
-  SignUpSuccessPayload,
-  UpdateProfileRequestPayload,
-  UpdateProfileSuccessPayload,
-} from './types/user-payload.types';
-import { USER_ACTION_TYPES } from './types/user-action.types';
+  USER_ACTION_TYPES,
+} from './user-store.types';
 
 export const signInRequest = withMatcher(
   (payload: SignInRequestPayload): SignInRequestAction =>

@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import BarChart from 'components/charts/bar-chart/bar-chart.component';
 import { Header } from 'components/layouts';
-import { MonthlyApplication } from 'store/stats/types/stats-state.types';
+import { MonthlyApplication } from 'store/stats/stats-store.types';
 
 import Wrapper from './monthly-stats-chart.styles';
 

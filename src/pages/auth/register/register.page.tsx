@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { selectIsAuthenticated } from 'store/user/user.selector';
-import { SignInRequestPayload, SignUpRequestPayload } from 'store/user/types/user-payload.types';
+import { SignInRequestPayload, SignUpRequestPayload } from 'types/payload.types';
 
 import { signInRequest, signUpRequest } from 'store/user/user.actions';
 import { RootState } from 'store/store';

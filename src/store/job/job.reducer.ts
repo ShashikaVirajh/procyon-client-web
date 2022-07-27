@@ -1,7 +1,7 @@
 import { JOB_SORT_OPTIONS } from 'enums';
 import { AnyAction } from 'redux';
 
-import { JobFilterState, JobState } from './types/job-state.types';
+import { JobFilterState, JobState } from './job-store.types';
 
 import {
   changeJobPage,

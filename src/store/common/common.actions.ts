@@ -1,11 +1,10 @@
 import { createAction, withMatcher } from 'utils/redux.utils';
 import {
+  COMMON_ACTION_TYPES,
   ResetApplicationStateAction,
   ResetCommonStateAction,
   ToggleSideBarAction,
-} from './types/common-action.types';
-
-import { COMMON_ACTION_TYPES } from './types/common-action.types';
+} from './common-store.types';
 
 export const toggleSideBar = withMatcher(
   (): ToggleSideBarAction => createAction(COMMON_ACTION_TYPES.TOGGLE_SIDE_BAR),

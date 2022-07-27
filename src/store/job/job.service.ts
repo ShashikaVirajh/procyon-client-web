@@ -1,13 +1,8 @@
 import { request } from 'library/http.library';
 
 import { API_VERSIONS, HTTP_METHODS } from 'enums';
-import { CreateJobRequestPayload, DeleteJobRequestPayload } from './types/job-payload.types';
-
-import {
-  CreateJobResponse,
-  DeleteJobResponse,
-  FetchJobListResponse,
-} from './types/job-response.types';
+import { CreateJobRequestPayload, DeleteJobRequestPayload } from 'types/payload.types';
+import { CreateJobResponse, DeleteJobResponse, FetchJobListResponse } from 'types/response.types';
 import { JOB_ENDPOINTS } from './job.endpoints';
 
 export class JobService {

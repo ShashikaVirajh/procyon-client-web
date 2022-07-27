@@ -1,6 +1,6 @@
 import { COLORS } from 'constants/colors.constants';
 import { Bug, CalenderCheck, SuitcaseRolling } from 'assets/icons';
-import { ApplicationCount } from 'store/stats/types/stats-state.types';
+import { ApplicationCount } from 'store/stats/stats-store.types';
 
 export const APPLICATION_COUNT_LIST = (applicationCount?: ApplicationCount): StatItem[] => [
   {

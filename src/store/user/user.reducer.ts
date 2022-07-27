@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 
-import { UserState } from './types/user-state.types';
+import { UserState } from './user-store.types';
 
 import {
   signInFailed,

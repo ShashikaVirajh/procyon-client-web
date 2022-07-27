@@ -5,8 +5,8 @@ import {
   SignInRequestPayload,
   SignUpRequestPayload,
   UpdateProfileRequestPayload,
-} from './types/user-payload.types';
-import { SignInResponse, SignUpResponse, UpdateProfileResponse } from './types/user-response.types';
+} from 'types/payload.types';
+import { SignInResponse, SignUpResponse, UpdateProfileResponse } from 'types/response.types';
 
 import { USER_ENDPOINTS } from './user.endpoints';
 
