@@ -6,9 +6,11 @@
     "start": "react-scripts start",
     "start:dev": "react-scripts start",
     "build": "react-scripts build",
+    "lint": "eslint -c .eslintrc.json --ext .ts --ext .tsx src --max-warnings=0",
+    "lint:fix": "eslint --fix src/ --ext .ts,.tsx",
+    "prettier:fix": "prettier --write src/**/*.{ts,tsx}",
     "test": "react-scripts test",
     "coverage": "react-scripts test -- --coverage",
-    "lint": "eslint -c .eslintrc.json --ext .ts --ext .tsx src --max-warnings=0",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -56,7 +58,8 @@
     "lint-staged": "^12.4.1",
     "loglevel": "^1.8.0",
     "prettier": "^2.6.2",
-    "redux-devtools-extension": "^2.13.9"
+    "redux-devtools-extension": "^2.13.9",
+    "redux-saga-test-plan": "^4.0.5"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [

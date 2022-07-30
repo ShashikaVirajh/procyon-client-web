@@ -1,21 +1,15 @@
 import { FC } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
-import { selectCurrentUser } from 'store/user/user.selector';
-
-const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
-  const currentUser = useSelector(selectCurrentUser);
-
-  if (!currentUser) {
-    return <Navigate to='/landing' />;
-  }
-
+const ProtectedRoute: FC<Props> = ({ isAllowed, redirectPath = '/landing', children }) => {
+  if (!isAllowed) return <Navigate to={redirectPath} />;
   return children;
 };
 
-type ProtectedRouteProps = {
+type Props = {
   children: JSX.Element;
+  isAllowed: boolean;
+  redirectPath?: string;
 };
 
 export default ProtectedRoute;

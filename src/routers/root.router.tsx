@@ -1,9 +1,11 @@
 import { ROUTES } from 'constants/routes.constants';
-import { lazy } from 'react';
+import { FC, lazy } from 'react';
 import { Route } from 'react-router-dom';
 
 import { ProtectedRoute } from 'components/hoc';
 import { SentryRoutes } from 'library/logger.library';
+import { useSelector } from 'react-redux';
+import { selectIsAuthenticated } from 'store/user/user.selector';
 
 const ErrorPage = lazy(() => import('pages/common/error/error.page'));
 const LandingPage = lazy(() => import('pages/common/landing/landing.page'));
@@ -15,27 +17,31 @@ const ProfilePage = lazy(() => import('pages/dashboard/profile/profile.page'));
 const StatsPage = lazy(() => import('pages/dashboard/stats/stats.page'));
 const DashboardPage = lazy(() => import('pages/dashboard/dashboard-layout/dashboard-layout.page'));
 
-const RootRouter = (): JSX.Element => (
-  <SentryRoutes>
-    <Route
-      path={ROUTES.DASHBOARD}
-      element={
-        <ProtectedRoute>
-          <DashboardPage />
-        </ProtectedRoute>
-      }
-    >
-      <Route index element={<StatsPage />} />
-      <Route path={ROUTES.JOB_LIST} element={<JobListPage />} />
-      <Route path={ROUTES.CREATE_JOB} element={<CreateJobPage />} />
-      <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
-    </Route>
+const RootRouter: FC = () => {
+  const isAuthenticated = useSelector(selectIsAuthenticated);
 
-    <Route path={ROUTES.LANDING} element={<LandingPage />} />
-    <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+  return (
+    <SentryRoutes>
+      <Route
+        path={ROUTES.DASHBOARD}
+        element={
+          <ProtectedRoute isAllowed={isAuthenticated}>
+            <DashboardPage />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<StatsPage />} />
+        <Route path={ROUTES.JOB_LIST} element={<JobListPage />} />
+        <Route path={ROUTES.CREATE_JOB} element={<CreateJobPage />} />
+        <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
+      </Route>
 
-    <Route path={ROUTES.NOT_FOUND} element={<ErrorPage />} />
-  </SentryRoutes>
-);
+      <Route path={ROUTES.LANDING} element={<LandingPage />} />
+      <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+
+      <Route path={ROUTES.NOT_FOUND} element={<ErrorPage />} />
+    </SentryRoutes>
+  );
+};
 
 export default RootRouter;
