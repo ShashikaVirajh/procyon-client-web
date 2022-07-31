@@ -31,14 +31,3 @@ test('Clicking Log In / Register shows the Register page', async () => {
 
   // expect(screen.getByText('Email')).toBeInTheDocument();
 });
-
-// test("Clicking sign-in button shows sign-in page", () => {
-//   render(<App />, { preloadedState: { user: null } }); // note: rendering App
-
-//   const signInButton = screen.getByRole("button", { name: /sign in/i });
-//   fireEvent.click(signInButton);
-
-//   expect(
-//     screen.getByRole("heading", { name: /Sign in to your account/i })
-//   ).toBeInTheDocument();
-// });
